@@ -11,11 +11,27 @@
  * You include the header associated with that file(s)
  * into the main file of your project. */
 #include "peripherals.h"
+#define MAX_SIZE 32;
 
 // Function Prototypes
 void swDelay(char numLoops);
+void creatRandomArray(void);
 
 // Declare globals here
+int size = 4;
+int simon_array[MAX_SIZE];
+int user_array[MAX_SIZE];
+
+
+// compare array function to compare if 2 arrays are the same
+bool compareArray(int arr1[], int arr2[], int size) {
+    for (int i = 0; i < size; i++) {
+        if (arr1[i] != arr2[i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
 // Main
 void main(void)
@@ -30,34 +46,19 @@ void main(void)
     configDisplay();
     configKeypad();
 
-    // declare variables
-    int max_size = 32;
-    int size = 4;
-    int simon_array[max_size];
-    int user_array[max_size];
+
 
     // randomize array
     for (int i = 0; i < size; i++) {
-            array[i] = (rand() % 4) + 1;  }
-
-    // compare array function to compare if 2 arrays are the same
-    bool compareArray(int arr1[], int arr2[], int size) {
-        for (int i = 0; i < size; i++) {
-            if (arr1[i] != arr2[i]) {
-                return false;
-            }
-        }
-        return true;
+        simon_array[i] = (rand() % 4) + 1;
     }
+
 
     bool displayText(string texttodisplay){
         Graphics_clearDisplay(&g_sContext); // Clear the display
         Graphics_drawStringCentered(&g_sContext, texttodisplay, AUTO_STRING_LENGTH, 48, 15, TRANSPARENT_TEXT);
     }
 
-    while(1){
-        displayText("Hello World");
-    }
 
     while (1)    // Forever loop
     {
@@ -151,6 +152,6 @@ void main(void)
             Graphics_drawStringCentered(&g_sContext, "YOU WIN", AUTO_STRING_LENGTH, 48, 15, TRANSPARENT_TEXT); //Display YOU WIN
         break;
 
-    }  // end while (1)
-}
+    }
+    }
 }
