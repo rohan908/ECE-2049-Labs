@@ -50,14 +50,27 @@ void main(void)
         return true;
     }
 
+    bool displayText(string texttodisplay){
+        Graphics_clearDisplay(&g_sContext); // Clear the display
+        Graphics_drawStringCentered(&g_sContext, texttodisplay, AUTO_STRING_LENGTH, 48, 15, TRANSPARENT_TEXT);
+    }
+
+    while(1){
+        displayText("Hello World");
+    }
+
     while (1)    // Forever loop
     {
         switch (state) {
         case WELCOME: // Display welcome screen
-            Graphics_clearDisplay(&g_sContext); // Clear the display
-            Graphics_drawStringCentered(&g_sContext, "SIMON", AUTO_STRING_LENGTH, 48, 15, TRANSPARENT_TEXT); //Display SIMON
+            displayText("SIMON")
             currKey = getKey();
             if(currKey = '*'){
+                displayText("1");
+                //delay
+                displaytext("2");
+                //delay
+                displaytext("3");
                 //display start 3...2...1... countdown
                 state = PLAYSEQUENCE;
             }
@@ -140,4 +153,4 @@ void main(void)
 
     }  // end while (1)
 }
-
+}
