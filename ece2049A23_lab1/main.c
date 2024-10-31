@@ -11,7 +11,7 @@
  * You include the header associated with that file(s)
  * into the main file of your project. */
 #include "peripherals.h"
-#define MAX_SIZE 32;
+#define MAX_SIZE 32
 
 // Function Prototypes
 void swDelay(char numLoops);
@@ -24,7 +24,8 @@ int user_array[MAX_SIZE];
 
 // compare array function to compare if 2 arrays are the same
 bool compareArray(int arr1[], int arr2[], int size) {
-    for (int i = 0; i < size; i++) {
+    int i = 0;
+    for (int i =0; i < size; i++) {
         if (arr1[i] != arr2[i]) {
             return false;
         }
@@ -46,16 +47,9 @@ void main(void)
     configKeypad();
 
 
-
-    // randomize array
-    for (int i = 0; i < size; i++) {
-        simon_array[i] = (rand() % 4) + 1;
-    }
-
-
-    bool displayText(string texttodisplay){
+    bool displayText(char texttodisplay[]){
         Graphics_clearDisplay(&g_sContext); // Clear the display
-        Graphics_drawStringCentered(&g_sContext, texttodisplay, AUTO_STRING_LENGTH, 48, 15, TRANSPARENT_TEXT);
+        Graphics_drawStringCentered(&g_sContext, texttodisplay[], AUTO_STRING_LENGTH, 48, 15, TRANSPARENT_TEXT);
     }
 
 
@@ -74,7 +68,7 @@ void main(void)
                 //display start 3...2...1... countdown
                 state = PLAYSEQUENCE;
             }
-        break;
+            break;
 
         case PLAYSEQUENCE: // Play Sequence
 
@@ -86,21 +80,22 @@ void main(void)
             simon_array[size] = (rand() % 4) + 1;
             size++;
 
+            int i =0;
             for (int i = 0; i < size; i++) {
-            if(simon_array[i] = 1){
+            if(simon_array[i] == 1){
                 // turn on LED 1 and sound buzzer
                 }
-            else if(simon_array[i] = 2){
+            else if(simon_array[i] == 2){
                 // turn on LED 2 and sound buzzer
                 }
 
-            else if(simon_array[i] = 3){
+            else if(simon_array[i] == 3){
                 // turn on LED 3 and sound buzzer
                 }
             else
                 // turn on LED 4 and sound buzzer
             }
-        break;
+            break;
 
         case CHECKINPUT: // Check Player Input
              Graphics_clearDisplay(&g_sContext); // Clear the display
@@ -134,7 +129,7 @@ void main(void)
              }
 
             if(compareArray(simon_array, user_array, size)){
-                if(size = MAX_SIZE){
+                if(size == MAX_SIZE){
                     state = WIN
                 }else{
                     state = PLAYSEQUENCE;
@@ -144,13 +139,15 @@ void main(void)
             }
 
 
-        break;
+
+            break;
 
         case WIN: //Player WIN
             Graphics_clearDisplay(&g_sContext); // Clear the display
             Graphics_drawStringCentered(&g_sContext, "YOU WIN", AUTO_STRING_LENGTH, 48, 15, TRANSPARENT_TEXT); //Display YOU WIN
-        break;
+            break;
 
-    }
+
+        }
     }
 }
