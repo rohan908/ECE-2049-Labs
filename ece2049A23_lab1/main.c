@@ -15,7 +15,6 @@
 
 // Function Prototypes
 void swDelay(char numLoops);
-void creatRandomArray(void);
 
 // Declare globals here
 int size = 4;
@@ -81,21 +80,21 @@ void main(void)
 
             // randomize all entries
             for (int i = 0; i < size; i++) {
-                array[i] = (rand() % 4) + 1;
+                simon_array[i] = (rand() % 4) + 1;
             }
             // add an entry
-            array[size] = (rand() % 4) + 1;
+            simon_array[size] = (rand() % 4) + 1;
             size++;
 
             for (int i = 0; i < size; i++) {
-            if(ledArray[i] = 1){
+            if(simon_array[i] = 1){
                 // turn on LED 1 and sound buzzer
                 }
-            else if(ledArray[i] = 2){
+            else if(simon_array[i] = 2){
                 // turn on LED 2 and sound buzzer
                 }
 
-            else if(ledArray[i] = 3){
+            else if(simon_array[i] = 3){
                 // turn on LED 3 and sound buzzer
                 }
             else
@@ -135,7 +134,7 @@ void main(void)
              }
 
             if(compareArray(simon_array, user_array, size)){
-                if(size = max_size){
+                if(size = MAX_SIZE){
                     state = WIN
                 }else{
                     state = PLAYSEQUENCE;
